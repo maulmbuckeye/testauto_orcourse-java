@@ -89,4 +89,15 @@ public class TicTacToeGameTest {
     assertEquals(GameStatus.WON, ticTacToeGame.getGameStatus());
   }
 
+  @Test
+  void checkGameWonOnColMatch(){
+    ticTacToeGame.placePeg(1, 1);
+    ticTacToeGame.placePeg(2, 2);
+    ticTacToeGame.placePeg(2, 1);
+    ticTacToeGame.placePeg(2, 0);
+
+    ticTacToeGame.placePeg(0, 1);
+
+    assertEquals(GameStatus.WON, ticTacToeGame.getGameStatus());
+  }
 }
