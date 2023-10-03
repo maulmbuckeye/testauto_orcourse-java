@@ -1,0 +1,685 @@
+==============================================================
+./welcome.txt
+==============================================================
+This repository contains all the code examples and lab solutions written 
+during the live class:
+
+Test Automation Boot Camp
+offered online for O'Reilly Online Training
+by Venkat Subramaniam
+
+Thank you for attending.
+
+Venkat Subramaniam
+Agile Developer, Inc.
+venkats@agiledeveloper.com
+@venkat_s
+
+
+==============================================================
+./code/part0/lab/readme.txt
+==============================================================
+Please install IntelliJ IDEA Community Edition if you don't already have it.
+
+Start IntelliJ IDEA Community Edition, do a File | Open and open the lab directory. Then find the test file under test directory and run the test class.
+
+==============================================================
+./code/part1/examples/01_automated_testsing_and_the_need/discussions.txt
+==============================================================
+Agile development is really feedback driven development
+
+Agile development is *not* about speed.
+
+It is really about sustainability.
+
+It is sometimes very important to slow down in order to sustain speed in the long term
+
+https://twitter.com/venkat_s/status/939166889779003393
+
+I do automated testing not because I have a lot of time, it’s because I don’t.
+
+You don't want to build what your customers wanted. You want to build what
+they still want.
+
+There are two cycles of feedback
+1. That the code meets our customers or business' expectations - relevance
+2. The code worked yesterday, does it still work? - regression
+
+Software is a non-linear system
+
+A change in one place may drastically affect a very different place in the application.
+
+We evolve design to accommodate change in requirements.
+
+How do we know if the design is not brittle and is easier to change?
+How do we know that a change does not break the current behavior of the code?
+
+
+I love manual testing.
+
+But, what is testing?
+
+Testing is an act of gaining insight into the application we are designing. Does this feel right, is this usable, is the workflow necessary, can it be better, is the performance adequate,...
+
+We use the word testing too broadly and often in an incorrect manner
+
+If we ask "the code worked yesterday and does it still work as expected"
+That is *not* testing even though we call it testing.
+
+It is an act of verification.
+
+Test manually, but verify automated.
+
+Automated verification (testing!).
+
+Even though we call it automated testing (because many have done so already)
+it really is automated verification.
+
+Why not do manual verification?
+
+If we implement 4 user stores in sprint 1
+We may need, let us say, 2 days to fully test it manually
+
+In the next sprint, we implement 4 more user stories.
+How much time do we now need to fully test for this sprint?
+
+May be at least 4 days
+
+Remember software is a non-linear system. We have to make sure the 
+changes and the new additions did not break anything that already was there.
+
+Now, with each added sprint, each added story, we need more and more time.
+
+At some point we may need weeks. That is not possible to accommodate 
+within a sprint. So, we may say, go on, write some code, we will test 
+when things are done...  - Waterfall.
+
+Agile becomes waterfall, we celebrate it as agile, when in reality it
+is really far from it.
+
+A lot of organizations do what I like to call as "Agile by convenience"
+they follow rituals but shy away from the rigor that helps to achieve
+sustainability.
+
+Automated testing (verification) is about feedback. You want to rely
+on the feedback to know that things are working as expected. Also, to know
+that we can accommodate change.
+
+Automated Unit tests
+Functional tests
+Acceptance tests
+Integration tests
+...
+
+
+Automated unit tests have two benefits:
+1. Regression benefit
+2. Design benefit
+
+Regression benefits is the long term benefit of automated unit tests.
+If things fall apart, we know it right away
+
+"Unit tests are angels on your shoulder"
+
+I would rather hear from my unit tests that my code sucks than from my
+colleagues and customers.
+
+The cost of fixing an error increases with time.
+
+If we automate a lot of tests on the GUI, the tests become brittle,
+they becomes slow, and hard to maintain.
+
+Think of the test ice cream cone anti pattern vs. test pyramid
+
+We want to do more tests / verification at the lower levels and fewer (not zero, however) tests at the higher levels. Instead of doing more tests at the GUI,
+push testes to lower levels.
+
+Where should a test go?
+
+The tests should be at the lowest level possible. If the code is at a particular level, the test should not be at any higher level than that.
+
+Even the front end has multiple levels and so does the backend.
+
+One of the problems with TDD is it is a skill. Like any skill, we take time
+to get better at it. We are often terrible with things in the beginning.
+But we get better over time.
+
+Remember the time you learn to 
+ride a bicyle
+to drive a car
+to ski
+to play music
+to code
+...
+
+TDD is a skill, it takes time to get better.
+
+Productivity (myth)
+
+
+             --------
+            / 
+           / 
+          / 
+         / 
+---------
+
+Productivity (reality)
+
+                                     --------
+                                    / 
+                                   / 
+                                  / 
+                                 / 
+---------                       /
+         \                     /
+          \                   /
+           \                 /
+            \----------------
+                ^
+		|
+		Panic and give up (unless we are determined to stay course and succeed)
+
+
+
+Automated unit tests are the software equivalent of exercising.
+
+Most will agree these are good, but often do not prioritize and lack the
+discipline to follow.
+
+For us to embrace these ideas we really need discipline, commitment, and
+dedication.
+
+
+
+
+==============================================================
+./code/part1/lab/lab.txt
+==============================================================
+1. How is TDD practiced in your current projects?
+
+2. How is it working for you?
+
+3. How is it working for the team?
+
+4. What are some of the impediments?
+
+5. What percentage of testing is automated?
+
+6. What are some of the places for improvements related to TDD and automation?
+
+
+
+==============================================================
+./code/part1/labsolution/lab.txt
+==============================================================
+1. How is TDD practiced in your current projects?
+
+I work mostly on the Data Ingestion and Curation side. TDD is normally not used in our current projects
+
+>>Consider evaluating how to bring in automated feedback loops
+
+Not at all, it is often impossible in the legacy part
+
+TDD is being promoted. I am facilitating adoption of TDD in developing PowerShell code to implement devops capabilities.
+
+Doing it with a Python project. However not all unittests are pure in-memory tests.
+
+Also, TDD is not used in build AI/ML models also.
+
+As a data org, we do not unit test. Instead we test against a test DB. And hope.
+
+I’m doing it (mostly), and I’m pushing juniors directly under me to do it. But others developer in the team are not doing it (because lack of skills…).
+
+TDD is being practiced at 80% of the time at my organization
+
+only important part in backend, majorly Integration tests. UI tests are even less.
+
+Individually - I personally use it for all code, I try to get colleagues to use it, but they are in the downward productivity curve and they have largely given up on it
+
+TDD is common in bug fixes/production code issues. We write a red test and try to make it green to fix the bug.
+
+Only done in the project that test coverage checks. Pull requests are checked for tests
+
+almost we writing after implementation
+
+
+We do not follow TDD. We do write some tests post development.
+
+Tosca has a good tool to do automation in API
+
+2. How is it working for you?
+
+3. How is it working for the team?
+
+4. What are some of the impediments?
+
+5. What percentage of testing is automated?
+
+6. What are some of the places for improvements related to TDD and automation?
+
+
+
+==============================================================
+./code/part2/examples/01_types_and_quality_of_tests/discussions.txt
+==============================================================
+White box testing
+Black box testing
+
+White box testing the person writing the test knows about the implementation of the code and is interested in helping with the design of the code.
+
+
+Black box testing the person writing the test does not know or does not care about the implementation of the code, but is interested in what the code should do. Functional or acceptance testing.
+
+Types of Unit tests:
+
+1. Positive tests - does the code do what it is suppose to do?
+I deposit $100, did the balance go up by $100 and ...
+
+2. Negative tests - does the code handle invariance properly and takes care of dealing with operations not allowed.
+
+3. Exception tests - does the code properly deal with exceptions, both generation and handling.
+
+If someone tells you this code cannot be automated tested, they are telling you the design of the code sucks.
+
+Testability is a design concern.
+
+A code that is poorly designed is hard to test.
+
+If performance is important then do not write any code for it until you have
+a test for it.
+
+Start with performance tests before tweaking performance.
+
+What is a unit test?
+
+It is a test on a unit of code.
+
+What is a unit?
+
+A unit is a smallest piece of code that does useful work.
+
+If a function does a lot of work, very complex looping, event management, etc. then it is not a unit of code. It can be divided into smaller functions that can be considered unit and on which we can write tests. The larger function can benefit from higher level tests than unit tests.
+
+
+Test quality
+
+A unit test should focus on one small expected behavior that you are about to implement.
+
+Let the test fail first.
+Then write minimum code to make the test pass.
+Then refactor.
+
+Red-Green-Refactor
+
+Difference between can't and won't
+
+Tests should be extremely small
+
+A test should tell a story of what it is helping us design.
+
+Make tests extremely clear
+
+AAA
+-Design your test into three parts:
+Arrange
+Act
+Assert
+
+Arrange - minimally set up things we need for the test
+Act - perform the action that is the central focus of the test
+Assert - verify the code did what it expects to do
+
+Please use a blank line between the parts of AAA.
+Helps to quickly understand the parts of a test and its focus as well.
+
+No cryptic names for tests but not overly long
+Name the tests based on what you are expecting for the behavior.
+Definitely not test1, test2, testa, testb.
+
+test_empty_codes_returns_empty_airports
+
+
+
+
+
+
+
+==============================================================
+./code/part2/lab/lab.txt
+==============================================================
+1. We are designing a class and decide we want a field and a getter and setter for it. Should we write a unit test before writing the getter and before writing a setter?
+
+2. We're designing a function that performs an action, sleeps for one second and then performs another action. How should we approach writing a unit test for it?
+
+3. We're designing a function that makes a call to a remote webservice, performs one set of action if the result of the call is in a range and a different set of action if the result of the call is out side of that range. How should we approach writing a unit test for it?
+
+
+
+==============================================================
+./code/part2/labsolution/lab.txt
+==============================================================
+1. We are designing a class and decide we want a field and a getter and setter for it. Should we write a unit test before writing the getter and before writing a setter?
+
+No.
+
+A unit test should be on a unit, which is smallest piece of code that does useful work. getter and setters are smallers piece of useless code.
+
+If a setter has significant validation logic, then, do not write test at the start of writing the setter, but only when you are ready to introduce that logic.
+
+2. We're designing a function that performs an action, sleeps for one second and then performs another action. How should we approach writing a unit test for it?
+
+This is a complex code that can be refactored into smaller functions that can be designed using unit tests.
+
+The function most likely fails the SLAP - Single Level of Abstraction Principle.
+So use the compose method pattern and refactor the code and focus on testing the units that are extracted from the function.
+
+Compose method pattern says that a function should be composed of instructions
+all at the same level of detail or abstraction.
+
+
+3. We're designing a function that makes a call to a remote webservice, performs one set of action if the result of the call is in a range and a different set of action if the result of the call is out side of that range. How should we approach writing a unit test for it?
+
+
+result = call to a service
+if(result range) {
+ ...
+} else {
+  ...
+}
+
+Dependency inject and use stubs for the service.
+Also consider, if the action is complex or extensive to separate into
+functions. In this case, we can use a spy for the functions and still use
+DI and test the outer function.
+
+
+
+==============================================================
+./code/part3/examples/01_when_and_where/discussions.txt
+==============================================================
+Typically we write a class, put some fields, add getter/setter as necessary,
+we write functions, and then think of tests.
+
+Unit test may be written before or after. However, if we write test after,
+we often are trying to work with the design we have thrown together.
+
+If we write test first, we get to put ourselves in the shoes of the person
+who will use our code. We are able to create a better empathetic design.
+
+Test first development.
+
+We can ask does this make sense, is this easier for someone to use, is this
+necessary. We can be minimalistic in our design.
+
+We can influence the design of the code if we write test first.
+
+If we write tests after, and if we find it hard to write some tests, because
+the design does not make it easier, we may give up on writing those tests.
+
+Write a test
+Then write minimum code to make the test pass
+Refactor
+
+But, writing test is *not* a mechanical process.
+
+Write test, then stare at it. It tries to tell you something. Listen.
+
+To me, it is write test, tweak it, tweak it, tweak it, until it feel that the
+design is simple and minimalistic.
+
+The influence of TDD on design is not automatic. It takes deliberate effort
+and also being really awake.
+
+
+The person who is going to write the code should be writing the test.
+
+Think of walking from point A to point B. You want to take one step at a time, not bounce of like a drunkard.
+
+Right foot first
+Left foot next
+
+Like wise,
+one test
+minimum code
+one test
+minimum code
+...
+
+You need a good rhythm to write test and code as you move forward.
+
+The series of tests should tell a story of how the design has evolved incrementally.
+
+
+If we are pairing, then one person may write test and the other may implement and we swap - ping pong pairing. Still, the tests are written in the same session as we are writing the code. Not entirely before or entirely after.
+
+Unit tests should be written as part of writing the code. Not all before, not all after.
+
+Write tests at one layer below the GUI. This can help us to get fast feedback
+and make the tests less brittle.
+
+It also helps to separate the logic from the GUI.
+
+Legacy code. Michael Features says "Legacy code is a piece of code with no tests"
+Working Effectively with Legacy Code book.
+
+The first step in dealing with legacy code is to put an end to legacy code
+becoming older.
+
+I once worked with a client who said they have "5 years of legacy code"
+I met them 5 years later. They now said "we have 10 years of legacy code"
+
+1. Promise to start writing tests for any new code in the legacy code.
+
+2. Do *not* start writing unit tests randomly or with vengeance on existing code.
+   The unit tests are not very effective if we do this
+   We take time away from important tasks that need to be done
+
+3. If some code has not been touched for a long time and there is no plan to touch it, do not bother with any tests on that legacy code. It is there, let it be there.
+
+4. When you are getting ready to fix a bug or add a new feature, then and only then start with very high level tests (approval test, integration test, or even manual tests). Use there tests as a form of feedback to refactor, and then write unit test on the refactored code. Then add a feature or fix a bug, with tests of course.
+
+
+How do we approach the design and testing when we start with requirements?
+
+Divide the design into two parts:
+Strategic design
+Tactical design
+
+Strategic design
+Very high level design. Jot down classes, some top level functions, etc.
+Keep in mind these are details that can, should, and will change.
+
+This gives you a starting point but we will be willing to change it when we learn better.
+
+Gives us a starting point.
+
+Tactical design
+
+Here start with the most interesting or the most valuable part of the strategic design. Drive the design using automated unit tests. As you learn more, as you evolve the design, change the strategic design to match the current understanding.
+
+
+
+==============================================================
+./code/part4/examples/01_regression_benefits/discussions.txt
+==============================================================
+Code evolves constantly.
+
+We fix bugs
+We add new features
+We enhance existing features
+
+
+Two benefit of automated unit tests
+1. Regression - does the code still work after the recent change
+2. Design - is the code easier to change and evolve. Tests give us a early 
+sign of warning towards this.
+
+Regression benefit stays with us from the start
+
+You may outgrow the design benefit at some point. TDD serves as a nice
+training wheel for design. You may reach a point of diminishing return 
+for design benefits.
+
+Once we start practicing TDD, fundamentally we begin to think about cohesion,
+loose coupling, SRP, SLAP, etc. more naturally. As a result, we become
+better designers over time.
+
+Should we write automated tests?
+
+We get the regression benefit throughout, so yes.
+Also, you may not benefit from the design training wheels, but there are others
+that work with us in different stages of their design skill and it will help them.
+
+Make sure to run your Continuous Integration on all supported platforms for your application. Difference makes difference.
+
+Automated tests are safety net for refactoring.
+
+Do not refactor code without having some kind of feedback that the code actually behaves as you expect it to behave. Capture the intended behavior via the tests.
+
+
+
+
+==============================================================
+./code/part4/lab/lab.txt
+==============================================================
+Please take a look at the code that is given.
+We have been asked to change the data type from int to double.
+How confident are we in making that change without having any tests?
+Discuss.
+
+
+==============================================================
+./code/part4/labsolution/lab.txt
+==============================================================
+Please take a look at the code that is given.
+We have been asked to change the data type from int to double.
+How confident are we in making that change without having any tests?
+Discuss.
+
+
+==============================================================
+./code/part5/examples/practices.txt
+==============================================================
+Practices to follow:
+-list the tests that come to your mind, do not deliberate over them at this time.
+-think about the behavior rather than state (what you can do instead of what it contains)
+-start with the canary test
+-think of postive tests
+-think of negative tests
+-think of exception tests
+-a good design may eliminate the need for some tests (by eliminating some possible actions or conditions)
+-pick a test that is useful and also quick to implement
+-if a test will take more effort, postpone it as other tests may pave the way for that to be implemented more easily later
+-do not go sequentially on the list of tests you created
+-as you work with tests, remember to add more tests as they come to mind
+-focus on behavior or an action rather than state
+-let the state fall in place to serve an action or a behavior rather than the state being self-serving
+-when you write a test, pause, think, stare at, and ask "how does this feel", simple or complicated
+-write absolutely minimum code to make the current tests pass
+-make sure that the tests are FAIR
+ Fast
+ Automated
+ Isolated
+ Repeatable
+-Give a blank line between the AAA: Arrange, Act, Assert
+-think about code quality, program with intent and make code expressive. Reduce cognitive load
+-when a test passes, take the time to revisit the code, and refactor to improve (Red Green Refactor)
+
+==============================================================
+./code/part5/examples/principles.txt
+==============================================================
+Principles that we (may) use:
+-Program with intention
+-Keep it DRY, but do not overly optimize tests
+-Keep it simple
+-Keep it minimalistic
+-Follow SLAP
+-Apply YAGNI
+-...
+
+
+==============================================================
+./code/part5/examples/problem.txt
+==============================================================
+We are going to build the game of tic-tac-toe.
+
+We have two players. One player can place a peg X, the other can place a peg O. One player can start, the other one can follow. They take turns to play.
+
+The object of the game is for one player to place all of their peg in a row, a column, or in a line diagonally.
+
+Let's come up with an initial strategic design and then drive the tactical design using tests.
+
+Strategic design (high level initial idea, not set on stone, gives us a starting point):
+Game
+board
+player
+GameBoard
+Grid
+Service Contract
+Round
+Pegs
+State machine
+Game Rules
+
+We want to separate the GUI from the logic.
+
+We may want to start with the logic and then think of slapping on a GUI on top of that.
+
+Where to start?
+
+You may go by process of elimination first. Think of classes that were tempting but may really not
+be necessary or at least not needed just yet.
+We may eliminate the following for now with options to consider later:
+Pegs
+State machine
+player
+board
+GameBoard
+Service Contract
+Grid
+Round
+
+
+Game
+Game Rules
+
+The logic may be a good start for the game rules. So we can consider as a starting point a TicTacToeGame.
+
+
+Tactical design (is fine grained, driving using automated tests, refines the design along the way):
+
+Pick a class or a function that has the most interesting logic or behavior. Something that is valuable and gets us moving towards implementing the solution.
+
+How to proceed:
+-maintain a tests list
+-think of principles to use
+-and practices to follow
+
+
+
+==============================================================
+./code/part5/examples/tests.txt
+==============================================================
+Maintain this on a piece of paper or even a napkin.
+
+Tests:
+✓canary test
+-mark x, mark o (no need)
+✓no winner (game in progress) at start
+✓place peg at an empty location
+✓place peg at a non-empty location
+-a player does not play out of turn  (no need)
+✓place the first peg
+✓place the second peg
+-board created as 3x3 (no need)
+-player places x  (no need)
+-place a peg out of row bounds (hum, may be or may be the GUI should handle it?)
+-place a peg out of column bounds
+-player places only their own peg
+-is there an empty spot left?  (no need, may be needed as part of check for a draw, but not as a test)
+-no move after game is over
+✓check row win
+-...
+
+
